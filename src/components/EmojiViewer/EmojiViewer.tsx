@@ -4,17 +4,20 @@ import './style.css'
 type Props = {
   placeholder: string
   emojis: string[]
+  className?: string
 }
 
-export const EmojiViewer = ({emojis, placeholder}: Props) => {
+export const EmojiViewer = ({emojis, placeholder, className}: Props) => {
   return (
-    <div className="container">
-      {!emojis.length ?
-        placeholder :
-        emojis.map((emoji, index) => (
-          <Emoji key={index} unified={emoji}/>
-        ))
-      }
+    <div className={className}>
+      <div className="container">
+        {!emojis.length ?
+          placeholder :
+          emojis.map((emoji, index) => (
+            <Emoji key={index} unified={emoji}/>
+          ))
+        }
+      </div>
     </div>
   )
 }

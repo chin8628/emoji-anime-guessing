@@ -2,10 +2,12 @@ import type {DataConnection} from "peerjs";
 
 let remoteConnections: DataConnection[] = []
 
+const getHostId = (): string => Math.floor(100000 + Math.random() * 900000).toString()
+
 export const createHost = async (): Promise<string> => {
   const {Peer} = await import('peerjs')
 
-  const peer = new Peer("test2", {
+  const peer = new Peer(getHostId(), {
     debug: 3,
   });
 
@@ -15,7 +17,6 @@ export const createHost = async (): Promise<string> => {
 
   return new Promise<string>((res) => {
     peer.on('open', (id: string) => {
-      console.log('My peer ID is: ' + id);
       res(id)
     });
   })

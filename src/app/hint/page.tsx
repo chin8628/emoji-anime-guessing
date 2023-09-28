@@ -15,14 +15,14 @@ let initiated = false
 
 export default function Page() {
   const [selectedEmojis, setSelectedEmojis] = useState<string[]>([])
-  const [peerId, setPeerId] = useState("")
+  const [hostId, setHostId] = useState("")
   useEffect(() => {
     const asyncFn = async () => {
       if (initiated) return
       initiated = true
 
       const id = await createHost()
-      setPeerId(id)
+      setHostId(id)
     }
 
     asyncFn()
@@ -38,12 +38,18 @@ export default function Page() {
     broadcast(JSON.stringify(selectedEmojis))
   }
 
+  const clearEmoji = () => {
+    setSelectedEmojis([])
+    broadcast("")
+  }
+
   return (
     <main>
-      {peerId && (<h1>{peerId}</h1>)}
-      <EmojiViewer placeholder="Hint it!" emojis={selectedEmojis}/>
+      <h1>{hostId ? `Host ID: ${hostId}` : "Creating a room..."}</h1>
+      <EmojiViewer placeholder="Hint it!" emojis={selectedEmojis} className="mb-5"/>
       <EmojiPicker onEmojiClick={selectEmoji}/>
       <button onClick={sendEmoji}>Send!</button>
+      <button onClick={clearEmoji}>Clear</button>
     </main>
   )
 }

@@ -4,20 +4,24 @@ import {connectToHost} from "@/socket/client";
 import {useEffect, useState} from "react";
 
 
-let initiated = false
-
 export default () => {
   const [hint, setHint] = useState<string[]>([])
+  const [hostId, setHostId] = useState("")
 
-  useEffect(() => {
-    if (initiated) return
-    initiated = true
-    connectToHost('host', (data) => {
+  const submitHostId = () => {
+    connectToHost(hostId, (data) => {
       setHint(JSON.parse(data))
     });
-  }, [])
+  }
 
   return (
-    <EmojiViewer placeholder="Loading..." emojis={hint}/>
+    <div>
+      <label>
+        Host ID:
+        <input type="number" onChange={(event) => setHostId(event.target.value)}/>
+      </label>
+      <button onClick={submitHostId}>Join!</button>
+      <EmojiViewer placeholder="Waiting for a hint..." emojis={hint}/>
+    </div>
   )
 }
