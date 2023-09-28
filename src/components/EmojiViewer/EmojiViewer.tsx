@@ -2,16 +2,17 @@ import {Emoji} from "emoji-picker-react";
 import './style.css'
 
 type Props = {
+  placeholder: string
   emojis: string[]
 }
 
-export const EmojiViewer = ({emojis}: Props) => {
+export const EmojiViewer = ({emojis, placeholder}: Props) => {
   return (
     <div className="container">
       {!emojis.length ?
-        'Hint it!' :
-        emojis.map((emoji) => (
-          <Emoji unified={emoji}/>
+        placeholder :
+        emojis.map((emoji, index) => (
+          <Emoji key={index} unified={emoji}/>
         ))
       }
     </div>
