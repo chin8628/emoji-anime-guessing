@@ -1,3 +1,5 @@
+let conn
+
 export const connectToHost = async (hostId: string, onReceive: (data: string) => void) => {
   const {Peer} = await import('peerjs')
 
@@ -7,12 +9,26 @@ export const connectToHost = async (hostId: string, onReceive: (data: string) =>
     }
   );
 
-  peer.on('open', () => {
-    const conn = peer.connect(hostId)
+  return new Promise(res => {
+    peer.on('open', () => {
+      conn = peer.connect(hostId)
 
-    conn.on('data', (data: string) => {
-      console.log('🚀 File: client.ts, Line: 16, data:', data)
-      onReceive(data)
+      conn.on('open', () => {
+        res(true)
+      })
+
+      conn.on('data', (data: string) => {
+        onReceive(data)
+      })
     })
   })
+}
+
+export const joinHost = async (username: string) => {
+  conn.send(JSON.stringify({
+    type: 'join',
+    data: {
+      username
+    }
+  }))
 }
