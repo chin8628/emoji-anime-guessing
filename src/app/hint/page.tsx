@@ -82,7 +82,7 @@ export default function Page() {
         {players.length > 0 && (<h2>Friends!</h2>)}
         <ul>
           {
-            players.map((username) => (<li key={username}>{username}</li>))
+            players.map((username, index) => (<li key={index}>{username}</li>))
           }
         </ul>
       </div>
