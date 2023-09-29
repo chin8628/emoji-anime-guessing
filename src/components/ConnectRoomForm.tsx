@@ -22,7 +22,7 @@ export const ConnectRoomForm = ({onReceiveHint, onJoin}: Props) => {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-md mx-auto h-min mt-8 p-6 bg-white rounded-lg shadow-md relative top-[25vh]">
       <form method="post" onSubmit={submit}>
         <div className="mb-4">
           <label htmlFor="hostId" className="block text-gray-700 font-bold mb-2">Host ID</label>
