@@ -26,9 +26,9 @@ export default () => {
         username === "" ? (
           <ConnectRoomForm onReceiveHint={(hint) => setHint(hint)} onJoin={(username) => setUsername(username)}/>
         ) : (
-          <div className="relative top-[25vh]">
+          <div className="relative flex flex-col items-center justify-center ">
             <EmojiViewer placeholder="Waiting for a hint..." emojis={hint}/>
-            <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <div className="mt-8 bg-white p-6 rounded-lg shadow-md h-min">
               <form method="post" onSubmit={onSubmit}>
                 <label htmlFor="answer" className="block text-gray-700 font-bold mb-2">Answer</label>
                 <input

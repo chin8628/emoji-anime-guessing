@@ -62,7 +62,9 @@ export default function Page() {
         </div>
         <div className="flex-1 p-4">
           <EmojiViewer placeholder="Hint it!" emojis={selectedEmojis} className="mb-5"/>
-          <EmojiPicker onEmojiClick={selectEmoji}/>
+          <div className="mt-4">
+            <EmojiPicker onEmojiClick={selectEmoji}/>
+          </div>
           <button onClick={sendEmoji}>Send!</button>
           <button onClick={clearEmoji}>Clear</button>
         </div>
