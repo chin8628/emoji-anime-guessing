@@ -1,0 +1,18 @@
+.imageBox {
+    height: 400px;
+    width: 290px;
+    border: 1px solid #CBD5E0;
+    margin: 8px 0;
+    background: #CBD5E0;
+}
+
+.imageBox > img {
+    height: 400px;
+    width: 290px;
+    object-fit: contain;
+}
+
+.animeTitle {
+    margin: 4px 0;
+    font-size: 1.5em;
+}

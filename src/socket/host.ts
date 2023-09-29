@@ -4,7 +4,7 @@ let remoteConnections: DataConnection[] = []
 
 const getHostId = (): string => Math.floor(100000 + Math.random() * 900000).toString()
 
-export const createHost = async (onNewUserJoin: (username: string) => void): Promise<string> => {
+export const createHost = async (onNewUserJoin: (username: string) => void, onPlayerAnswer: (username: string, answer: string) => void): Promise<string> => {
   const {Peer} = await import('peerjs')
 
   const peer = new Peer(getHostId(), {
@@ -15,8 +15,14 @@ export const createHost = async (onNewUserJoin: (username: string) => void): Pro
     remoteConnections.push(conn)
     conn.on('data', (res: string) => {
       const data = JSON.parse(res)
+
       if (data.type === 'join') {
         onNewUserJoin(data.data.username)
+      }
+
+      if (data.type === 'answer') {
+        console.log('🚀 File: host.ts, Line: 24, data:', data)
+        onPlayerAnswer(data.data.username, data.data.answer)
       }
     })
   });

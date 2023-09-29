@@ -24,11 +24,21 @@ export const connectToHost = async (hostId: string, onReceive: (data: string) =>
   })
 }
 
-export const joinHost = async (username: string) => {
+export const joinHost = (username: string) => {
   conn.send(JSON.stringify({
     type: 'join',
     data: {
       username
+    }
+  }))
+}
+
+export const sendAnswer = (username: string, answer: string) => {
+  conn.send(JSON.stringify({
+    type: 'answer',
+    data: {
+      username,
+      answer
     }
   }))
 }
