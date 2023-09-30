@@ -3,6 +3,7 @@ import {EmojiViewer} from "@/components/EmojiViewer/EmojiViewer";
 import {sendAnswer} from "@/socket/client";
 import {useState} from "react";
 import {ConnectRoomForm} from "@/components/ConnectRoomForm";
+import {AnimeSugesstionInput} from "@/components/AnimeSugesstionInput";
 
 export default () => {
   const [hint, setHint] = useState<string[]>([])
@@ -31,14 +32,7 @@ export default () => {
             <div className="mt-8 bg-white p-6 rounded-lg shadow-md h-min">
               <form method="post" onSubmit={onSubmit}>
                 <label htmlFor="answer" className="block text-gray-700 font-bold mb-2">Answer</label>
-                <input
-                  type="text"
-                  id="answer"
-                  name="answer"
-                  className="border border-gray-400 rounded w-full py-2 px-3 mb-4"
-                  placeholder="Enter your answer"
-                  required
-                />
+                <AnimeSugesstionInput/>
                 <button
                   type="submit"
                   className="w-full"

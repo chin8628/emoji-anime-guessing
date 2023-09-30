@@ -14,7 +14,11 @@ export const ConnectRoomForm = ({onReceiveHint, onJoin}: Props) => {
     const userName = event.target.playerName.value
 
     await connectToHost(hostId, (data) => {
-      onReceiveHint(JSON.parse(data))
+      try {
+        onReceiveHint(JSON.parse(data))
+      } catch (e) {
+        onReceiveHint([])
+      }
     });
 
     joinHost(userName)

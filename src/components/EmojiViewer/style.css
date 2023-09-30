@@ -1,8 +1,8 @@
 .container {
     border: 1px #aaa solid;
     border-radius: 8px;
-    height: 48px;
-    padding: 0 8px;
+    height: 98px;
+    padding: 0 24px;
     width: fit-content;
     display: flex;
     align-items: center;

@@ -21,7 +21,6 @@ export const createHost = async (onNewUserJoin: (username: string) => void, onPl
       }
 
       if (data.type === 'answer') {
-        console.log('🚀 File: host.ts, Line: 24, data:', data)
         onPlayerAnswer(data.data.username, data.data.answer)
       }
     })

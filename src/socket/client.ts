@@ -18,6 +18,7 @@ export const connectToHost = async (hostId: string, onReceive: (data: string) =>
       })
 
       conn.on('data', (data: string) => {
+        console.log('🚀 File: client.ts, Line: 21, data:', data)
         onReceive(data)
       })
     })

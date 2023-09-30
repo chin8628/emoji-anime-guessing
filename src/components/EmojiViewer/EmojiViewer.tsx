@@ -12,7 +12,7 @@ export const EmojiViewer = ({emojis, placeholder}: Props) => {
       {!emojis.length ?
         placeholder :
         emojis.map((emoji, index) => (
-          <Emoji key={index} unified={emoji}/>
+          <Emoji size={64} key={index} unified={emoji}/>
         ))
       }
     </div>
